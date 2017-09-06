@@ -1,0 +1,7 @@
+site_name: C-Language-Programming-Tutorial
+pages:
+- Home: index.md
+- About: about.md
+theme: readthedocs
+repo_url: https://github.com/anshengme/C-Language-Programming-Tutorial
+edit_uri: blob/master/docs/
