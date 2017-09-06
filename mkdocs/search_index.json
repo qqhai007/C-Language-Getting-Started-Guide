@@ -2,53 +2,13 @@
     "docs": [
         {
             "location": "/",
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
-            "title": "Home"
+            "text": "Welcome to C-Language\n\n\n\n\nHello, World!",
+            "title": "\u9996\u9875"
         },
         {
-            "location": "/#welcome-to-mkdocs",
-            "text": "For full documentation visit  mkdocs.org .",
-            "title": "Welcome to MkDocs"
-        },
-        {
-            "location": "/#commands",
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.",
-            "title": "Commands"
-        },
-        {
-            "location": "/#project-layout",
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
-            "title": "Project layout"
-        },
-        {
-            "location": "/about/",
-            "text": "Eum caper montes haud hortamine mortis habitu\n\n\nSensit utraque quattuor cruore\n\n\nLorem markdownum partu; mutat illa non petere effugit, valvis Theti, \nIonium\nnon\n. Tum \nfacit\n nux: pavefactaque \nvisa\n cubile, amor est: est illa \nillos\nmontes\n retro? Enim quoque et tanto potuitque\nstipite: potuisse maius.\n\n\n\n\nAevo patrem: et nec miratur, aeraque idcirco videre. Nil quid, lacrimans\ntumulavit genitore amictus de et meruit, ille ego natalis tumulo est, manes\nleves. Proles et potestas geminos reus, domo? Quae pectus, lacertos altis,\nferasque, subiit nunc, leti, fama \nsolus\n\nvidit lumen. Hinc otia hac, ut quas concidere me orbem, cum edidit pennas\nfidem Colchide protinus delubraque caestibus.\n\n\n\n\nInducere ecce unus nam lac latices vidit\n\n\nBella ad\n faciat tanta leaena namque positasque nescius,\nest me silendo est. Tertius tulisse etiam coniunx ergo. Urbe tantum roboris\navidaeque ardesceret, piscosamque ruunt discedite inducere inde oris: quae\ninque. Et dei Cupidinis \ncarinae\n; vel de unum virginitas excutiunt et quod,\ndixit.\n\n\nNotavi ventre in certa promittat tradidit cur obscura campis. Neque visceribus\nmadidisque fines; magni ille roratis bobus subito antiquum est.\n\n\nPartem internodia solebat\n\n\nCoepta non vultu pavent tanto; et \nomnis\n, quod hirtus.\nOre qui titulum ardua belli \nIovis\n moles, recto \ninfamis levavit\nconsistere\n in iter. Solet quoque,\nmetuenti umor lepori solet casuque, est Oceanus officium. Hanc populis. Nec\ndirusque ait redolentia ignarus fieri placet.\n\n\n\n\nVitis dant istis ad spicula nexus crinem\n\n\nSulcat deam parvam lupum fulvum\n\n\nNec parabat\n\n\nEquo sortis\n\n\n\n\nEst primus\n\n\nFerae puppi Hector. Desinere reppulit, et\n\nmovente\n veteres Carthaea Aesacos.\nFurores fulmineos erat potuere nascitur; carmen pollicita cervi liquidum.\n\n\n\n\nMaritum aqua levis\n\n\nDelphines et umeroque lapsu vota servitii Samius\n\n\nEst Echo dextroque Turne temptantes teque\n\n\nMagna ipsa flammae ipse corpusque praeter mittit\n\n\n\n\nEt vocat perimunt \nadplicat\n, equinis positamque setius in vento victa\n\noccubuisse primi\n. Superi \nvocis pius\n inplevit Medea\nIove nec olim deprendit et monstravit Sidonius sumit. Renarrant dixit cum suos\nquicquam fruitur temptent nemora nantis in litora spectatas prosunt, in. Cur\nullum, et \nsit\n, et ferit incinxit piaeque inque plangorem non nos \nerror nunc\nauras\n ad bis adstupet. Acheloe sub loci fratres digitique dominum bulla\niungimus Crantor, futuri Zancleia duritiem, et ubi inhaeret quam, tollere?",
-            "title": "About"
-        },
-        {
-            "location": "/about/#eum-caper-montes-haud-hortamine-mortis-habitu",
-            "text": "",
-            "title": "Eum caper montes haud hortamine mortis habitu"
-        },
-        {
-            "location": "/about/#sensit-utraque-quattuor-cruore",
-            "text": "Lorem markdownum partu; mutat illa non petere effugit, valvis Theti,  Ionium\nnon . Tum  facit  nux: pavefactaque  visa  cubile, amor est: est illa  illos\nmontes  retro? Enim quoque et tanto potuitque\nstipite: potuisse maius.   Aevo patrem: et nec miratur, aeraque idcirco videre. Nil quid, lacrimans\ntumulavit genitore amictus de et meruit, ille ego natalis tumulo est, manes\nleves. Proles et potestas geminos reus, domo? Quae pectus, lacertos altis,\nferasque, subiit nunc, leti, fama  solus \nvidit lumen. Hinc otia hac, ut quas concidere me orbem, cum edidit pennas\nfidem Colchide protinus delubraque caestibus.",
-            "title": "Sensit utraque quattuor cruore"
-        },
-        {
-            "location": "/about/#inducere-ecce-unus-nam-lac-latices-vidit",
-            "text": "Bella ad  faciat tanta leaena namque positasque nescius,\nest me silendo est. Tertius tulisse etiam coniunx ergo. Urbe tantum roboris\navidaeque ardesceret, piscosamque ruunt discedite inducere inde oris: quae\ninque. Et dei Cupidinis  carinae ; vel de unum virginitas excutiunt et quod,\ndixit.  Notavi ventre in certa promittat tradidit cur obscura campis. Neque visceribus\nmadidisque fines; magni ille roratis bobus subito antiquum est.",
-            "title": "Inducere ecce unus nam lac latices vidit"
-        },
-        {
-            "location": "/about/#partem-internodia-solebat",
-            "text": "Coepta non vultu pavent tanto; et  omnis , quod hirtus.\nOre qui titulum ardua belli  Iovis  moles, recto  infamis levavit\nconsistere  in iter. Solet quoque,\nmetuenti umor lepori solet casuque, est Oceanus officium. Hanc populis. Nec\ndirusque ait redolentia ignarus fieri placet.   Vitis dant istis ad spicula nexus crinem  Sulcat deam parvam lupum fulvum  Nec parabat  Equo sortis",
-            "title": "Partem internodia solebat"
-        },
-        {
-            "location": "/about/#est-primus",
-            "text": "Ferae puppi Hector. Desinere reppulit, et movente  veteres Carthaea Aesacos.\nFurores fulmineos erat potuere nascitur; carmen pollicita cervi liquidum.   Maritum aqua levis  Delphines et umeroque lapsu vota servitii Samius  Est Echo dextroque Turne temptantes teque  Magna ipsa flammae ipse corpusque praeter mittit   Et vocat perimunt  adplicat , equinis positamque setius in vento victa occubuisse primi . Superi  vocis pius  inplevit Medea\nIove nec olim deprendit et monstravit Sidonius sumit. Renarrant dixit cum suos\nquicquam fruitur temptent nemora nantis in litora spectatas prosunt, in. Cur\nullum, et  sit , et ferit incinxit piaeque inque plangorem non nos  error nunc\nauras  ad bis adstupet. Acheloe sub loci fratres digitique dominum bulla\niungimus Crantor, futuri Zancleia duritiem, et ubi inhaeret quam, tollere?",
-            "title": "Est primus"
+            "location": "/#welcome-to-c-language",
+            "text": "Hello, World!",
+            "title": "Welcome to C-Language"
         }
     ]
 }
