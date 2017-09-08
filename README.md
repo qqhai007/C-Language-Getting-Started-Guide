@@ -1,2 +1,3 @@
-# C-Language-Programming-Tutorial
-《C语言程序设计教程》
+# C-Language-Getting-Started-Guide
+
+《C语言入门指南》

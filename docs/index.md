@@ -1,5 +1,5 @@
-# Welcome to C-Language
+# C语言入门指南
 
-![C-Language](img/c-language.png)
+---
 
-> Hello, World!
+> Hello, C Language!

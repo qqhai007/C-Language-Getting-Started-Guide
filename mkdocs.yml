@@ -1,6 +1,9 @@
-site_name: C语言程序设计
+site_name: C语言入门指南
 pages:
 - 首页: index.md
+- 第一章 C语言概述: chapter-1.md
+- 参考文献: references.md
+
 theme: readthedocs
 repo_url: https://github.com/anshengme/C-Language-Programming-Tutorial
 edit_uri: blob/master/docs/
