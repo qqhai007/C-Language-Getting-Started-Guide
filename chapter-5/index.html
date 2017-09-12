@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>第五章 进制 &mdash; C Language Getting Started Guide</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/alabaster.css" type="text/css">
+    <link rel="stylesheet" href="../css/alabaster-overrides.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+    
+  
+</head>
+<body>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body" role="main">
+          
+            <h1 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<h2 id="_2">进制<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>在计算机中，所有的程序都是以二进制的方式进行存储的，我们看到的数字其实是用<code>十</code>进制显示出来的。</p>
+<p>对于任何一种进制---X进制，就表示某一位置上的数运算时是逢X进一位。十进制是逢十进一，十六进制是逢十六进一，二进制就是逢二进一，以此类推，x进制就是逢x进位。</p>
+<p>编程中常见的进制有4种：</p>
+<ol>
+<li>十进制</li>
+<li>二进制</li>
+<li>八进制</li>
+<li>十六进制</li>
+</ol>
+<p>也就是说，同一个整数，我们至少有4种表示方式。</p>
+<h3 id="_3">十进制<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>十进制是我们最熟悉、最常用的一种计数方式，它有两个特点：由0、1、2….9十个基本数字组成。</p>
+<blockquote>
+<p>运算规则是<code>逢十进一</code></p>
+</blockquote>
+<ul>
+<li>运算</li>
+</ul>
+<p>所谓<code>逢十进一</code>，也就是当数值满十时，就要向前进一位</p>
+<p><img alt="2" src="../img/chapter-5/2.png" /></p>
+<p>个位数为9+1，满十了，十位数就进一。</p>
+<h3 id="_4">二进制<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>二进制是计算机内部使用的一种计数方式，它有两个特点：由<code>0</code>、<code>1</code>两个基本数字组成；</p>
+<blockquote>
+<p>运算规则是<code>逢二进一</code></p>
+</blockquote>
+<p>如果有人问：为什么二进制里面没有2~9这些数字呢？你就告诉他，二进制是逢二进一，因此当数字满二的时候就会进位。</p>
+<p>通常二进制是以<code>0b</code>或者<code>0B</code>开头的，比如<code>0b1010</code>是个二进制数，而<code>1010</code>则还是我们熟悉的十进制数，就是<code>一千零一十</code></p>
+<ul>
+<li>运算</li>
+</ul>
+<p>比如<code>1+1</code></p>
+<p><img alt="3" src="../img/chapter-5/3.png" /></p>
+<p>个位数是<code>1+1</code>，值满<code>2</code>了，于是十位数要进<code>1</code>。</p>
+<p>因此，在二进制中：1 + 1 = <code>0b10</code>，这里的<code>0b10</code>表示的是十进制中的<code>2</code>，并不是<code>10</code></p>
+<p>以此类推，11 + 1 = <code>0b100</code></p>
+<p><img alt="4" src="../img/chapter-5/4.png" /></p>
+<h4 id="_5">二进制转为十进制<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
+<p>进制里面有个<code>基数</code>的概念，基数是用来计算数值的，比如十进制的基数是<code>10</code>，因此十进制是这样算数的：</p>
+<p>12345 = 5 * 10(0) + 4 * 10(1) + 3 * 10(2) + 2 * 10(3) + 1 * 10(4) = 5 + 40 + 300 + 2000 + 10000 = 12345</p>
+<p>二进制的基数是2，以此类推：</p>
+<p><code>0B</code>1011 = 1 * 2<code>(0)</code> + 1 * 2<code>(1)</code> + 0 * 2<code>(2)</code> + 1 * 2<code>(3)</code> = 1 * 1 + 1 * 2 + 0 * 4 + 1 * 8 = 1 + 2 + 0 + 8 = 11</p>
+<p>因此二进制数<code>0B1011</code>表示的数值是十进制中的<code>11</code></p>
+<h3 id="_6">八进制<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>八进制有两个特点：由0~7八个基本数字组成；</p>
+<blockquote>
+<p>运算规则是<code>逢八进一</code></p>
+</blockquote>
+<ul>
+<li>细节</li>
+</ul>
+<p>由于十进制和八进制中都包含了0~7，为了区分开来，在书写八进制数的时候，需要在前面加个<code>0</code>。比如<code>0</code>76是个八进制数，76则是个十进制数。</p>
+<ul>
+<li>运算</li>
+</ul>
+<p><img alt="5" src="../img/chapter-5/5.png" /></p>
+<p>个位数是7+1，值满八了，于是十位数要进一。因此，在八进制中，7 + 1 = 010。010则表示十进制中的<code>八</code>，而不是<code>十</code></p>
+<h4 id="_7">八进制转十进制<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>
+<p>八进制的基数是8，因此<code>0</code>27计算出来就是十进制中的23</p>
+<p>027 = 7 * 8<code>(0)</code> + 2 * 8<code>(1)</code> = 7 * 1 + 2 * 8 = 23</p>
+<h4 id="_8">二进制转八进制<a class="headerlink" href="#_8" title="Permanent link">¶</a></h4>
+<p>不难发现一个十进制数可以表示的最大值是9，而一个八进制数可以表示的最大值是7，恰好3个二进制数可以表示的最大值<code>0b</code>111也是7。因此，我们可以用一个八进制数来代替3个二进制数。</p>
+<p><code>0b</code>11110011 = <code>0</code>b 011  110  011  = <code>0</code>363</p>
+<p>如果是八进制转为二进制，那就反过来，用3位二进制数来表示1位八进制数</p>
+<p><code>0</code>25 = <code>0b</code> 010  101 = <code>0b</code>10101</p>
+<h3 id="_9">十六进制<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<p>十六进制有两个特点：由0~9和A~F组成，A~F分别表示10~15；</p>
+<blockquote>
+<p>运算规则是<code>逢十六进一</code></p>
+</blockquote>
+<ul>
+<li>细节</li>
+</ul>
+<p>由于十进制、八进制、十六进制中都包含了0~7，为了区分开来，在书写十六进制数的时候，需要在前面加个<code>0x</code>或者<code>0X</code>。比如<code>0x</code>76是个十六进制数，076是个八进制数，76则是个十进制数。</p>
+<ul>
+<li>运算</li>
+</ul>
+<p><img alt="6" src="../img/chapter-5/6.png" /></p>
+<p>个位数是B+5，也就是11+5，值满十六了，于是十位数要进一。因此，在十六进制中，B + 5 = <code>0x</code>10。<code>0x</code>10则表示十进制中的“十六”，而不是“十”</p>
+<h4 id="_10">十六进制转十进制<a class="headerlink" href="#_10" title="Permanent link">¶</a></h4>
+<p>十六进制的基数是16，F表示十进制中的15，因此<code>0x</code>2F计算出来就是十进制中的47</p>
+<p><code>0x</code>2F = 15 * 16<code>(0)</code> + 2 * 16<code>(1)</code> = 15 * 1 + 2 * 16 = 47</p>
+<h4 id="_11">二进制转十六进制<a class="headerlink" href="#_11" title="Permanent link">¶</a></h4>
+<p>一个十六进制数可以表示的最大值是15，恰好4个二进制数可以表示的最大值<code>0b</code>1111也是15。因此，我们可以用一个十六进制数来代替4个二进制数。</p>
+<p><code>0b</code>11110011 = <code>0b</code> 1111  0011  = <code>0x</code>F3</p>
+<p>如果是十六进制转为二进制，那就反过来，用4位二进制数来表示1位十六进制数</p>
+<p><code>0x</code>25 = <code>0b</code> 0010  0101=<code>0b</code>100101</p>
+<h3 id="_12">小结<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<p>一个整数<code>99</code>的4种表示方式分别如下：</p>
+<pre><code>十进制：99
+二进制：0b1100011
+八进制：0143
+十六进制：0x63
+</code></pre>
+
+<p><code>c语言</code>中的代码为</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i = 99;  // 十进制
+    int j = 0b1100011;  // 八进制
+    int k = 0x63;  // 十六进制
+    // C语言里没有二进制数的表示方法
+    printf(&quot;%d \n&quot;, i);
+    printf(&quot;%d \n&quot;, j);
+    printf(&quot;%d \n&quot;, k);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>使用printf进行输出</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">格式符</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>%d</code></td>
+<td align="left">以带符号的十进制形式输出整数</td>
+</tr>
+<tr>
+<td align="left"><code>%o</code></td>
+<td align="left">以不带符号的八进制形式输出整数</td>
+</tr>
+<tr>
+<td align="left"><code>%x</code></td>
+<td align="left">以不带符号的十六进制形式输出整数</td>
+</tr>
+<tr>
+<td align="left"><code>%u</code></td>
+<td align="left">以不带符号的十进制形式输出整数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>二进制、十进制、十六进制对应关系</li>
+</ul>
+<p><img alt="1" src="../img/chapter-5/1.png" /></p>
+<h2 id="_13">参考文献<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="http://www.cnblogs.com/mjios/archive/2013/05/24/3067219.html#labelTop">【零基础学习iOS开发】【02-C语言】05-进制</a></li>
+<li><a href="https://baike.baidu.com/item/%E8%BF%9B%E5%88%B6">百度百科--进制</a></li>
+<li><a href="http://c.biancheng.net/cpp/html/2855.html">进制之间的转换</a></li>
+</ul>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+        
+  <p class="logo">
+    <a href="..">
+      <img class="logo" src="../logo.png" title="C Language Getting Started Guide">
+    </a>
+  </p>
+  
+
+
+
+        
+          
+
+
+
+<h3>Table Of Contents</h3>
+
+<nav>
+  
+  
+    <ul>
+    
+      <li><a href="#_2">进制</a></li>
+      <ul>
+    
+      <li><a href="#_3">十进制</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_4">二进制</a></li>
+      <ul>
+    
+      <li><a href="#_5">二进制转为十进制</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_6">八进制</a></li>
+      <ul>
+    
+      <li><a href="#_7">八进制转十进制</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_8">二进制转八进制</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_9">十六进制</a></li>
+      <ul>
+    
+      <li><a href="#_10">十六进制转十进制</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_11">二进制转十六进制</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_12">小结</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_13">参考文献</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+  
+
+  
+    <hr>
+    <ul>
+      
+        <li class="toctree-l1"><a href="https://github.com/anshengme/C-Language-Getting-Started-Guide">Fork me on GitHub</a></li>
+      
+    </ul>
+  
+</nav>
+          
+  <h3>Related Topics</h3>
+  <ul>
+    
+      <li>Previous: <a href="../chapter-4/" title="previous chapter">
+        第四章 变量与常量
+      </a></li>
+    
+    
+      <li>Next: <a href="../references/" title="next chapter">
+        参考文献
+      </a></li>
+    
+  </ul>
+
+        
+        <div id="searchbox" style="display: none;" role="search">
+  <h3>Quick search</h3>
+  <form class="search" action="../search.html" method="get">
+    <input name="q" type="text">
+    <input value="Go" type="submit">
+  </form>
+  <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+  </p>
+</div>
+<script type="text/javascript">
+  document.getElementById("searchbox").style.display = "block";
+</script>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  
+    <div class="footer">
+      
+        &copy; 2017 ansheng
+      
+      
+        |
+        Powered by <a href="http://www.mkdocs.org">MkDocs 0.16.3</a>
+        &amp; <a href="https://github.com/iamale/mkdocs-alabaster">Alabaster</a>
+      
+    </div>
+  
+
+  <!--
+  MkDocs version      : 0.16.3
+  Docs Build Date UTC : 2017-09-12 08:38:36
+  -->
+</body>
+</html>

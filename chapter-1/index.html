@@ -1,141 +1,49 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>第一章 C语言概述 - C语言入门指南</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+<!DOCTYPE html>
+<html>
+<head>
   
-  <script>
-    // Current page data
-    var mkdocs_page_name = "\u7b2c\u4e00\u7ae0 C\u8bed\u8a00\u6982\u8ff0";
-    var mkdocs_page_input_path = "chapter-1.md";
-    var mkdocs_page_url = "/chapter-1/";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>第一章 C语言概述 &mdash; C Language Getting Started Guide</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/alabaster.css" type="text/css">
+    <link rel="stylesheet" href="../css/alabaster-overrides.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+    
   
 </head>
+<body>
 
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> C语言入门指南</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body" role="main">
           
-            <li class="toctree-l1">
-		
-    <a class="" href="..">首页</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">第一章 C语言概述</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#_1">前言</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#att">AT&amp;T（美国电话电报公司）</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">贝尔和他的贝尔系统</a></li>
-        
-            <li><a class="toctree-l3" href="#bell-labs">Bell Labs（贝尔实验室）</a></li>
-        
-            <li><a class="toctree-l3" href="#_5">贝尔实验室与软件行业</a></li>
-        
-            <li><a class="toctree-l3" href="#_6">编程语言</a></li>
-        
-            <li><a class="toctree-l3" href="#_11">结语</a></li>
-        
-            <li><a class="toctree-l3" href="#_12">参考文献</a></li>
-        
-        </ul>
-    
-
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../references/">参考文献</a>
-	    </li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">C语言入门指南</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>第一章 C语言概述</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/anshengme/C-Language-Programming-Tutorial/blob/master/docs/chapter-1.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="_1">前言</h1>
+            <h1 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
 <p>俗话说<code>一叶障目，不见泰山</code>，其释义为：</p>
 <blockquote>
 <p>一片树叶挡住了眼睛，连面前高大的泰山都看不见；比喻为局部现象所迷惑，看不到全局的整体，也比喻目光短浅。</p>
 </blockquote>
 <p>所以就像我们学习一样，如果不了解其历史，怎能学好呢？有了更开阔的视野，你的学习才会得心应手。</p>
 <p>接下来我们需要吸取一个非常<code>long（长类型）</code>的故事。</p>
-<h2 id="att">AT&amp;T（美国电话电报公司）</h2>
+<h2 id="att">AT&amp;T（美国电话电报公司）<a class="headerlink" href="#att" title="Permanent link">¶</a></h2>
 <p><a href="https://www.att.com/">AT&amp;T</a>是一家美国电信公司，美国第二大移动运营商，创建于<code>1877</code>年，曾长期垄断美国长途和本地电话市场。</p>
 <p><code>C</code>语言和<code>Unix</code>等诸多知名软件都是起源于<code>贝尔实验室</code>，但是贝尔实验室的所属所属公司是<code>AT&amp;T</code>。</p>
-<h2 id="_2">贝尔和他的贝尔系统</h2>
+<h2 id="_2">贝尔和他的贝尔系统<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>我们的主角叫<code>亚历山大·格拉汉姆·贝尔（Alexander Graham Bell，1847-1922）</code>，他是美籍加拿大著名发明家和企业家，他获得了世界上第一台可用电话机的专利权，是<code>电话之父</code>。</p>
 <p>它以电话专利权起家创建了<code>贝尔电话公司</code>，这家公司和之后的大量衍生公司最终被称为<code>贝尔系统</code>。</p>
 <p><img alt="4" src="../img/chapter-1/4.jpeg" /></p>
-<h3 id="_3">贝尔的黑历史</h3>
+<h3 id="_3">贝尔的黑历史<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p><code>2002年6月15日</code>，美国国会通过一项决议，判定意大利人<code>安东尼奥·梅乌奇（Antonio Meucci）</code>为电话的发明者，换言之他才是电话之父，那么历史到底是怎样的呢？</p>
 <p>根据可以网上可以查到的资料显示：</p>
 <p>意大利人<code>梅乌奇</code>在<code>1849年</code>的一天在他研究电生理学的过程中发现了电话的原理并开始研究他称之为会说话的电报机的装置，此时，<code>亚历山大·贝尔</code>才两岁。</p>
@@ -146,7 +54,7 @@
 <blockquote>
 <p>当然，我们不能因为一点而完全否认一个人，贝尔还是为社会、科技的发展作出了卓越的贡献。</p>
 </blockquote>
-<h3 id="_4">贝尔系统</h3>
+<h3 id="_4">贝尔系统<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <p><code>贝尔</code>创建的<code>贝尔系统</code>，也可以用<code>ATt&amp;T</code>代称，在其100多年的历史中，经历了多次的拆分和重组（由于自身发展或是政府反垄断）。</p>
 <p><code>贝尔系统</code>包括母公司<code>AT&amp;T</code>和数量庞大的子公司和研究所，曾长期垄断了80%-90%的美国市话和长途业务，而到今天，现在的<code>AT&amp;T</code>已经是被拆分了几次之后的结果了。</p>
 <p>贝尔系统的历史如下：</p>
@@ -161,7 +69,7 @@
 <blockquote>
 <p>其实和我们关系最大的是<code>AT&amp;T</code>的一个部门：<code>贝尔实验室</code></p>
 </blockquote>
-<h2 id="bell-labs">Bell Labs（贝尔实验室）</h2>
+<h2 id="bell-labs">Bell Labs（贝尔实验室）<a class="headerlink" href="#bell-labs" title="Permanent link">¶</a></h2>
 <p><code>贝尔实验室</code>如雷贯耳，自<code>1925</code>年以来，实验室共获得了两万五千多项专利，8项诺贝尔奖。</p>
 <p>贝尔实验室的历史如下：</p>
 <ol>
@@ -172,36 +80,36 @@
 <li><code>2015</code>年，<code>诺基亚</code>宣布将以<code>156亿欧元</code>收购<code>阿郎</code>，预计2016年上半年完成，如果<code>贝尔实验室</code>部门还存在，应该要归入<code>诺基亚</code>了；</li>
 </ol>
 <p><img alt="5" src="../img/chapter-1/5.jpg" /></p>
-<h2 id="_5">贝尔实验室与软件行业</h2>
+<h2 id="_5">贝尔实验室与软件行业<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
 <p>由上可知，<code>贝尔实验室</code>其实是专注于<code>通讯领域</code>的，但其对计算机软件领域的影响却也是无与伦比的。</p>
-<h3 id="bunix">B与UNIX</h3>
+<h3 id="bunix">B与UNIX<a class="headerlink" href="#bunix" title="Permanent link">¶</a></h3>
 <p><code>20世纪60年代</code>，<code>贝尔实验室</code>的研究员<code>Ken Thompson（肯·汤普森）</code>发明了<code>B</code>语言，并使用B编了个游戏（Space Travel），他想玩自己这个游戏，所以他背着老板找到了台空闲的机器（PDP-7），但是这台机器没有操作系统，于是<code>Thompson</code>着手为<code>PDP-7</code>开发操作系统，后来这个OS被命名为<code>UNIX</code>。</p>
 <p><img alt="2" src="../img/chapter-1/2.jpeg" /></p>
 <blockquote>
 <p>Thompson（肯·汤普森）发明了UNIX</p>
 </blockquote>
-<h3 id="c">C</h3>
+<h3 id="c">C<a class="headerlink" href="#c" title="Permanent link">¶</a></h3>
 <p><code>1971</code>年，<code>Ken Thompson</code>的同事<code>D.M.Ritchie（DM里奇）</code>，也很想玩<code>Space Travel</code>，所以加入了<code>Ken Thompson</code>，合作开发<code>UNIX</code>，他的主要工作是改进<code>Thompson</code>的<code>B</code>语言。</p>
 <p>最终，在<code>1972</code>年这个新语言被称为<code>C</code>，取<code>BCPL</code>的第二个字母，也是<code>B</code>的下一个字母。</p>
 <p><img alt="3" src="../img/chapter-1/3.jpg" /></p>
 <blockquote>
 <p>D.M.Ritchie（DM里奇）发明了C语言</p>
 </blockquote>
-<h3 id="cunix">C与UNIX</h3>
+<h3 id="cunix">C与UNIX<a class="headerlink" href="#cunix" title="Permanent link">¶</a></h3>
 <p><code>1973</code>年，<code>C</code>主体完成。<code>Ken Thompson</code>和<code>D.M.Ritchie</code>迫不及待的开始用<code>C</code>语言完全重写了<code>UNIX</code>，此时编程的乐趣已经使他们完全忘记了那个<code>Space Travel</code>，一门心思的投入到了<code>UNIX</code>和<code>C</code>语言的开发中，自此，<code>C</code>语言和<code>UNIX</code>相辅相成的发展至今。</p>
 <p><img alt="1" src="../img/chapter-1/1.jpeg" /></p>
 <blockquote>
 <p>Ken Thompson（left）和D.M.Ritchie（right）</p>
 </blockquote>
 <p><code>贝尔实验室</code>太过伟大，甚至关于编程语言如此重要的发展历史部分，在实验室整体历史中都显得那么<code>微不足道</code></p>
-<h2 id="_6">编程语言</h2>
+<h2 id="_6">编程语言<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <p><code>编程语言（programming language）</code>是用来定义计算机程序的形式语言。</p>
 <p>它是一种被标准化的交流技巧，用来向计算机发出指令，一种计算机语言让程序员能够准确地定义计算机所需要使用的数据，并精确地定义在不同情况下所应当采取的行动。</p>
 <blockquote>
 <p><a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">维基百科</a></p>
 </blockquote>
 <p>随着时代的发展，每年都有各种各样的编程语言出现，但归根结底，主要还是分为一下三大类。</p>
-<h3 id="_7">机器语言</h3>
+<h3 id="_7">机器语言<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <p><code>机器语言（machine language）</code>是用二进制代码表示的计算机能直接识别和执行的一种机器指令的集合。</p>
 <p>要用机器语言编写程序，编程人员需首先熟记所用计算机的全部指令代码和代码的涵义，编程序时，程序员要自己处理每条指令和每一数据的存储分配和输入输出，还需记住编程过程中每步所使用的工作单元处在何种状态。</p>
 <p>这是一件十分繁琐的工作，编写程序花费的时间往往是实际运行时间的几十倍或几百倍。</p>
@@ -210,16 +118,39 @@
 <p><a href="https://zh.wikipedia.org/wiki/%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80">维基百科</a></p>
 </blockquote>
 <p><img alt="6" src="../img/chapter-1/6.png" /></p>
-<h3 id="_8">汇编语言</h3>
+<p><strong>优点：</strong></p>
+<ol>
+<li>直接执行、速度快、占用资源少；</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>可读性差、编程痛苦；</li>
+</ol>
+<h3 id="_8">汇编语言<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <p><code>汇编语言（assembly language）</code>使用助记符号来表示计算机指令，亦称为符号语言。</p>
 <p>在汇编语言中，每一条用符号来表示的汇编指令都与一条计算机机器指令对应。汇编语言的出现大大降低了记忆难度，不仅便于检查和修改程序错误，而且指令、数据的存放位置可以由计算机自动分配。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>保持了机器语言的优点；</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>面向机器编程，可移植性差；</li>
+<li>开发效率低、可维护性差；</li>
+</ol>
 <p><img alt="7" src="../img/chapter-1/7.png" /></p>
-<h3 id="_9">高级语言</h3>
+<h3 id="_9">高级语言<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <p><code>高级语言（High-level programming language）</code>是高度封装了的编程语言，与低级语言相对。</p>
 <p>它是以人类的日常语言为基础的一种编程语言，使用一般人易于接受的文字来表示，使程序编写员编写更容易，亦有较高的可读性，以方便对电脑认知较浅的人亦可以大概明白其内容</p>
 <blockquote>
 <p><a href="../(https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80)">维基百科</a></p>
 </blockquote>
+<p><strong>优点：</strong></p>
+<ol>
+<li>易学、易掌握、可读性好、可维护性强；</li>
+<li>可移植性高、服用率高；</li>
+<li>将底层和复杂的实物交给编译器，精力集中在创造性劳动，提高程序质量、缩短开发周期；</li>
+</ol>
 <p>高级语言又分为两大类，解释性语言和编译性语言，</p>
 <ul>
 <li>解释型语言</li>
@@ -231,7 +162,7 @@
 </ul>
 <p>编译成字节码文件之后在执行，典型代表<code>Go</code></p>
 <p><img alt="9" src="../img/chapter-1/9.png" /></p>
-<h3 id="_10">一个笑话</h3>
+<h3 id="_10">一个笑话<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
 <ul>
 <li>Java</li>
 </ul>
@@ -247,12 +178,12 @@
 <p>论坛炸锅了，各种吵架。 </p>
 <p>女神："服了你了，我们走吧，你想干啥都行。"</p>
 <p>程序猿："今天不行，我一定要说服他们，PHP语言是最好的语言。"</p>
-<h2 id="_11">结语</h2>
+<h2 id="_11">结语<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
 <p>虽然时代在变迁，编程语言也在升级，但是<code>C</code>这种千古不变的语言是值得我们去学习的，市面上绝大多数的大学也都是采用<code>C</code>语言来进行入门，而且很多的<code>数据结构和算法</code>课程中，也大多都是<code>C</code>，所以学好<code>C</code>语言对我们来说只有好处没有坏处。</p>
 <blockquote>
 <p>当然，如果你只想做一个普通的程序员，请止步。</p>
 </blockquote>
-<h2 id="_12">参考文献</h2>
+<h2 id="_12">参考文献<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
 <ol>
 <li><a href="http://blog.csdn.net/u010297957/article/details/51289544">C语言、编程语言发展史</a></li>
 <li><a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a></li>
@@ -260,52 +191,177 @@
 <li><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80">高级语言</a></li>
 <li><a href="http://blog.csdn.net/u011026329/article/details/51119402">编译型语言、解释型语言、脚本语言的区别</a></li>
 </ol>
-              
-            </div>
-          </div>
-          <footer>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+        
+  <p class="logo">
+    <a href="..">
+      <img class="logo" src="../logo.png" title="C Language Getting Started Guide">
+    </a>
+  </p>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+
+
+        
+          
+
+
+
+<h3>Table Of Contents</h3>
+
+<nav>
+  
+  
+    <ul>
+    
+      <li><a href="#att">AT&amp;T（美国电话电报公司）</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_2">贝尔和他的贝尔系统</a></li>
+      <ul>
+    
+      <li><a href="#_3">贝尔的黑历史</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_4">贝尔系统</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#bell-labs">Bell Labs（贝尔实验室）</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_5">贝尔实验室与软件行业</a></li>
+      <ul>
+    
+      <li><a href="#bunix">B与UNIX</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#c">C</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#cunix">C与UNIX</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_6">编程语言</a></li>
+      <ul>
+    
+      <li><a href="#_7">机器语言</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_8">汇编语言</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_9">高级语言</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_10">一个笑话</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_11">结语</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_12">参考文献</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+  
+
+  
+    <hr>
+    <ul>
       
-        <a href="../references/" class="btn btn-neutral float-right" title="参考文献">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <li class="toctree-l1"><a href="https://github.com/anshengme/C-Language-Getting-Started-Guide">Fork me on GitHub</a></li>
+      
+    </ul>
+  
+</nav>
+          
+  <h3>Related Topics</h3>
+  <ul>
+    
+      <li>Previous: <a href=".." title="previous chapter">
+        首页
+      </a></li>
+    
+    
+      <li>Next: <a href="../chapter-2/" title="next chapter">
+        第二章 第一个Hello Word!
+      </a></li>
+    
+  </ul>
+
+        
+        <div id="searchbox" style="display: none;" role="search">
+  <h3>Quick search</h3>
+  <form class="search" action="../search.html" method="get">
+    <input name="q" type="text">
+    <input value="Go" type="submit">
+  </form>
+  <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+  </p>
+</div>
+<script type="text/javascript">
+  document.getElementById("searchbox").style.display = "block";
+</script>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  
+    <div class="footer">
+      
+        &copy; 2017 ansheng
       
       
-        <a href=".." class="btn btn-neutral" title="首页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        |
+        Powered by <a href="http://www.mkdocs.org">MkDocs 0.16.3</a>
+        &amp; <a href="https://github.com/iamale/mkdocs-alabaster">Alabaster</a>
       
     </div>
   
 
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-    
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/anshengme/C-Language-Programming-Tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../references/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script src="../js/theme.js"></script>
-
+  <!--
+  MkDocs version      : 0.16.3
+  Docs Build Date UTC : 2017-09-12 08:38:36
+  -->
 </body>
 </html>
