@@ -1,9 +1,23 @@
-site_name: C语言入门指南
-pages:
-- 首页: index.md
-- 第一章 C语言概述: chapter-1.md
-- 参考文献: references.md
+site_name: C Language Getting Started Guide
+copyright: 2017 ansheng
 
-theme: readthedocs
-repo_url: https://github.com/anshengme/C-Language-Programming-Tutorial
-edit_uri: blob/master/docs/
+pages:
+  - 首页: index.md
+  - 第一章 C语言概述: chapter-1.md
+  - 第二章 第一个Hello Word!: chapter-2.md
+  - 第三章 标识符与关键字: chapter-3.md
+  - 第四章 变量与常量: chapter-4.md
+  - 第五章 进制: chapter-5.md
+  - 参考文献: references.md
+
+theme: alabaster
+
+markdown_extensions:
+  - toc:
+      permalink: "¶"
+
+extra:
+  logo: logo.png
+  include_toc: yes
+  extra_nav_links:
+    Fork me on GitHub: https://github.com/anshengme/C-Language-Getting-Started-Guide

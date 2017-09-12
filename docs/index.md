@@ -1,5 +1,1 @@
-# C语言入门指南
-
----
-
-> Hello, C Language!
+# C Language Getting Started Guide
