@@ -8,6 +8,7 @@ pages:
   - 第三章 标识符与关键字: chapter-3.md
   - 第四章 变量与常量: chapter-4.md
   - 第五章 进制: chapter-5.md
+  - 第六章 数据类型: chapter-6.md
   - 参考文献: references.md
 
 theme: alabaster
