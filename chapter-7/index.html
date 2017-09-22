@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>第七章 运算符与表达式 &mdash; C Language Getting Started Guide</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/alabaster.css" type="text/css">
+    <link rel="stylesheet" href="../css/alabaster-overrides.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+    
+  
+</head>
+<body>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body" role="main">
+          
+            <h1 id="_1">运算符与表达式<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<ul>
+<li>
+<p>什么是运算符？</p>
+<ul>
+<li>C语言定义的一些运算符号（<code>+-*/</code>...）；</li>
+</ul>
+</li>
+<li>
+<p>什么是表达式？</p>
+<ol>
+<li>表达式就是由运算符和操作数组成的一个符合C语法规则的式子序列；</li>
+<li>单个常量或变量也是一个表达式；</li>
+<li>根据运算符种类，可分为不同种类的表达式，比如算术表达式<code>3+5</code>、关系表达式<code>3 &gt; 5</code>...；</li>
+<li>表达式运算后的结果为表达式的值<code>int i = 1 +1</code>；</li>
+<li>值的类型为表达式的类型；</li>
+</ol>
+</li>
+<li>
+<p>什么是语句？</p>
+<ol>
+<li>语句可分为简单语句和符合语句，简单语句以<code>;</code>结束；</li>
+<li>语句是对计算机的指令：声明语句<code>int a;</code>、赋值<code>a=1</code>、函数调用、结构化语句、空语句、复合语句...；</li>
+</ol>
+</li>
+</ul>
+<h2 id="_2">运算符优先级<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>什么是优先级？</p>
+<ol>
+<li>在一个表达式中，优先级高的运算符先选择操作对象<code>（2+3*4+5）</code>；</li>
+<li>优先级用来确定运算符的操作对象，而不是用来确定运算次序<code>（2*3+4*5）</code>，后者是由编译器去决定的；</li>
+<li>C语言优先级一共16级，16级最高，1级最低；</li>
+</ol>
+</li>
+<li>
+<p>如何记忆优先级？</p>
+</li>
+</ul>
+<p><code>单目运算符</code> --&gt; <code>算术运算符</code> --&gt; <code>关系运算符</code> --&gt; <code>逻辑运算符</code> --&gt; <code>条件运算符</code> --&gt; <code>赋值运算符</code> --&gt; <code>逗号顺序求值</code></p>
+<p><img alt="1" src="../img/chapter-7/1.png" /></p>
+<h2 id="_3">运算符结合性<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>什么是结合性？</p>
+<ol>
+<li>结合性就是一串操作符是从做往右依次执行还是从右往左依次执行；</li>
+<li>当表达式中运算符优先级相同，那么运算符就会根据结合性来挑选操作数；</li>
+</ol>
+</li>
+<li>
+<p>左结合与右结合</p>
+<ol>
+<li>左边的运算符先挑运算对象，依次向右执行；</li>
+<li>右边的运算符先挑运算对象，依次向左执行；</li>
+<li>求值顺序和结合性无关，和编译器有关；</li>
+</ol>
+</li>
+<li>
+<p>右结合型的运算符</p>
+<ol>
+<li>单目运算符；</li>
+<li>赋值运算符；</li>
+<li>条件运算符；</li>
+</ol>
+</li>
+</ul>
+<pre><code class="c">1 + 2 + 3;  // (1+2)+3 // 左结合
+a = b = c;  // a=(b=c)  // 右结合
+</code></pre>
+
+<p>判断输入的年是否是闰年</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    int year;
+    printf(&quot;请输入一个年份：&quot;);
+    scanf(&quot;%d&quot;, &amp;year);
+    if( year%4==0 &amp;&amp; year%100!=0 || year%400==0)
+        /*
+        运算符顺序：
+            1. 算术运算符(%)
+            2. 关系运算符(==,!=)
+            3. 逻辑运算符(&amp;&amp; &gt; ||)
+        */
+        printf(&quot;%d是闰年\n&quot;, year);
+    else
+        printf(&quot;%d不是闰年\n&quot;, year);
+    return 0;
+}
+</code></pre>
+
+<pre><code class="bash">$ ./hello 
+请输入一个年份：2000
+2000是闰年
+$ ./hello 
+请输入一个年份：1999
+1999不是闰年
+</code></pre>
+
+<h2 id="_4">运算符分类<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>C语言提供了48种运算符</p>
+<ol>
+<li>ANSIC：44中种运算符；</li>
+<li>C90增加了一元<code>+</code>运算符；区分前后缀++/--；</li>
+<li>C99增加了一个复合字面值运算符；</li>
+</ol>
+</li>
+<li>
+<p>运算符的分类（根据需要的操作数）</p>
+<ol>
+<li>单目运算符</li>
+<li>双目运算符</li>
+<li>三目运算符</li>
+</ol>
+</li>
+</ul>
+<h3 id="_5">算术运算符<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<h4 id="_6">基本算术运算符<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
+<p>基本运算符</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>+</code></td>
+<td align="left">取正<code>（+4）</code></td>
+</tr>
+<tr>
+<td align="left"><code>-</code></td>
+<td align="left">取负<code>（-4）</code></td>
+</tr>
+<tr>
+<td align="left"><code>+</code></td>
+<td align="left">加</td>
+</tr>
+<tr>
+<td align="left"><code>-</code></td>
+<td align="left">减</td>
+</tr>
+<tr>
+<td align="left"><code>*</code></td>
+<td align="left">乘</td>
+</tr>
+<tr>
+<td align="left"><code>/</code></td>
+<td align="left">除</td>
+</tr>
+<tr>
+<td align="left"><code>%</code></td>
+<td align="left">求余</td>
+</tr>
+<tr>
+<td align="left"><code>++</code></td>
+<td align="left">自增</td>
+</tr>
+<tr>
+<td align="left"><code>--</code></td>
+<td align="left">自减</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_7">求余运算符<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>
+<ul>
+<li>优先级和乘除相同</li>
+<li>操作数必须是整数<ol>
+<li>字符型数据也可以求余运算</li>
+<li>浮点数不能进行求余运算</li>
+<li>指针也可以进行求余运算</li>
+<li>负数也可以进行求余运算</li>
+</ol>
+</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(&quot;%d\n&quot;, 10 &amp; 3);  // 整数可以进行求余运算
+    printf(&quot;%d\n&quot;, -10 &amp; 3);  // 整数可以进行求余运算
+    printf(&quot;%d\n&quot;, 'a' &amp; 'b');  // 字符可以进行求余运算，字符型在内存中是一个整数进行保存的
+    // printf(&quot;%d\n&quot;,10.5 &amp; 3);  // 不支持浮点数求余运算
+    return 0;
+}
+</code></pre>
+
+<h4 id="_8">自增自减运算符<a class="headerlink" href="#_8" title="Permanent link">¶</a></h4>
+<ul>
+<li>优先级大于乘除</li>
+<li>后缀自增、自减</li>
+<li>前缀自增、自减</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i,j = 0;
+    printf(&quot;%d\n&quot;, i++);  // 先取值在进行运算 ==&gt; 0
+    printf(&quot;%d\n&quot;, i--);  // ==&gt; 1
+    printf(&quot;%d\n&quot;, ++j);  // 先运算在取值 ==&gt; 1
+    printf(&quot;%d\n&quot;, --j);  // ==&gt; 0
+    return 0;
+}
+</code></pre>
+
+<h4 id="_9">运算符使用需要注意的地方<a class="headerlink" href="#_9" title="Permanent link">¶</a></h4>
+<ul>
+<li>C99对新标准的<code>/</code>和<code>%</code>的修改<ol>
+<li>C99中<code>/</code>的结果总是向零取整</li>
+<li>C99中<code>%</code>的值符号跟被除数相同</li>
+</ol>
+</li>
+<li>不清楚的地方、复杂的表达式加括号<ol>
+<li><code>a+++(++b)</code>与<code>a+++++b</code></li>
+</ol>
+</li>
+<li>避免产生未定义的行为<ol>
+<li>(i++)+(i++)+(i++)</li>
+</ol>
+</li>
+</ul>
+<h3 id="_10">赋值运算符<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<h4 id="_11">左值、右值和数据对象<a class="headerlink" href="#_11" title="Permanent link">¶</a></h4>
+<ul>
+<li>数据对象<ol>
+<li>用于保存变量或数组的数据存储区；</li>
+<li>数据存储区的术语，作用是用来保存数据；</li>
+</ol>
+</li>
+<li>左值<ol>
+<li>用于标识一个特定数据对象的名字或表达式；</li>
+<li>对象指的是实际的数据存储，左值用来表示存储在计算机内存中的对象，左值是一个用来识别或定位这个存储对象的标识符；</li>
+</ol>
+</li>
+<li>右值<ol>
+<li>指的是能赋给可修改的左值的量；</li>
+</ol>
+</li>
+<li>变量<ol>
+<li>变量即可以当左值，又可以当右值；</li>
+<li>变量的名字是一个左值，用来标识存储的数据对象；</li>
+<li>变量的值是一个右值，可以给可修改的左值赋值；</li>
+</ol>
+</li>
+</ul>
+<h4 id="_12">简单赋值运算符与符合赋值运算符<a class="headerlink" href="#_12" title="Permanent link">¶</a></h4>
+<ul>
+<li>简单赋值与简单赋值运算符<ul>
+<li><code>=</code></li>
+</ul>
+</li>
+<li>复合赋值与复合赋值运算符<ul>
+<li><code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code></li>
+</ul>
+</li>
+<li>赋值运算符</li>
+</ul>
+<h4 id="_13">复制过程中的类型转换<a class="headerlink" href="#_13" title="Permanent link">¶</a></h4>
+<ul>
+<li>浮点型数据复制给整型</li>
+<li>整型数据赋值给浮点型</li>
+<li>字符型数据赋值给整型</li>
+<li>整型数据赋值给字符型</li>
+</ul>
+<h4 id="_14">使用赋值运算符需要注意的地方<a class="headerlink" href="#_14" title="Permanent link">¶</a></h4>
+<ul>
+<li>赋值运算符的截断问题</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int a;
+    char b;
+    int c = 1000;
+    a = b = c;
+    printf(&quot;%d&quot;,a);
+    return 0;
+}
+</code></pre>
+
+<pre><code class="bash">$ ./hello 
+-24
+</code></pre>
+
+<h3 id="_15">关系运算符<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
+<p>用来比较两个数的关系，比如数字<code>1</code>是否比数字<code>2</code>大。。</p>
+<h4 id="_16">关系运算符的使用<a class="headerlink" href="#_16" title="Permanent link">¶</a></h4>
+<ul>
+<li>关系运算符<ol>
+<li>&lt;、&lt;=、&gt;、&gt;=、==、!=</li>
+<li>关系运算符的优先级<ul>
+<li>较高：&lt;、&lt;=、&gt;、&gt;=</li>
+<li>较低：==、!=</li>
+</ul>
+</li>
+<li>结合性<ul>
+<li>左结合</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>关系表达式</p>
+<ol>
+<li>由关系运算符将操作数连接而成的式子；</li>
+<li>表达式的结果是一个整型值，而不是一个布尔值；</li>
+<li>一般用在<code>if</code>或<code>while</code>语句中作为条件判断；</li>
+</ol>
+</li>
+<li>
+<p>关系运算符的结合性</p>
+<ul>
+<li><code>a&lt;b&lt;c</code>相当于<code>(a&lt;b)&lt;c&gt;</code></li>
+<li><code>a==b==c</code>用上</li>
+</ul>
+</li>
+</ul>
+<h3 id="_17">逻辑运算符<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
+<ul>
+<li>与、或、非<ul>
+<li>双目运算符：&amp;&amp;、||，左结合性；</li>
+<li>单目运算符：!，右结合性；</li>
+<li>优先级：! &gt; &amp;&amp; &gt; ||；</li>
+</ul>
+</li>
+<li>逻辑表达式<ul>
+<li>运算符的操作数可以是常量、变量、表达式；</li>
+<li>表达式的值类型是整型；</li>
+<li>优先级：! &gt; 算术运算符 &gt; 关系运算符 &gt; &amp;&amp; &gt; || &gt; 赋值运算符；</li>
+</ul>
+</li>
+</ul>
+<h4 id="_18">逻辑运算符的运算<a class="headerlink" href="#_18" title="Permanent link">¶</a></h4>
+<p><img alt="1" src="../img/chapter-7/2.png" /></p>
+<h4 id="_19">逻辑运算中的短路求值<a class="headerlink" href="#_19" title="Permanent link">¶</a></h4>
+<ul>
+<li>&amp;&amp;、||存在序列点</li>
+<li>左操作数先求值</li>
+<li>如果操作数能确定整个表达式的值，不再计算右值操作数的值</li>
+</ul>
+<h3 id="_20">位逻辑运算符<a class="headerlink" href="#_20" title="Permanent link">¶</a></h3>
+<ul>
+<li>实现对位的一些操作<ul>
+<li><code>&amp;(与)</code>、<code>|(或)</code>、<code>～(非)</code>、<code>^(异或)</code>、<code>&lt;&lt;(左移)</code>、<code>&gt;&gt;(右移)</code>；</li>
+<li>某位清零、置一、取反、异或、状态查询等操作；</li>
+</ul>
+</li>
+<li>位逻辑表达式<ul>
+<li>C语言中使用整数来代替逻辑表达式的布尔值；</li>
+<li>C99中可以直接使用布尔类型；</li>
+</ul>
+</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+#define BIT_0 0x01 // 位掩码 // Bitmask
+#define BIT_1 0x02
+#define BIT_2 0x04
+#define BIT_3 0x08
+#define BIT_4 0x10
+#define BIT_5 0x20
+#define BIT_6 0x40
+#define BIT_7 0x80
+
+int main(void)
+{
+    int i = 0x01;
+    int j = 0x0f;
+    i &amp;= 0x02; // == 0 某一位置一
+    printf(&quot;%x\n&quot;, i);
+    // i |= 0x02; // == 3
+    // printf(&quot;%x\n&quot;, i);
+    j = j &amp; ~0x1;
+    printf(&quot;%x\n&quot;, j);
+    return 0;
+}
+</code></pre>
+
+<h4 id="_21">左移、右移运算符<a class="headerlink" href="#_21" title="Permanent link">¶</a></h4>
+<ul>
+<li>属于逻辑移位<ol>
+<li>算术移位与逻辑移位的区别？</li>
+<li>对移出位进行零填充；</li>
+</ol>
+</li>
+<li>移位计数的合法取值范围<ol>
+<li>int型数据合法范围是[0,31]</li>
+</ol>
+</li>
+<li>位运算存在整数提升<ol>
+<li>当&lt;&lt;左操作数为字符、短整型时，会发生隐式类型转换；</li>
+<li>&lt;&lt;右操作数也要限制在其合法取值范围内；</li>
+</ol>
+</li>
+</ul>
+<h3 id="_22">条件运算符<a class="headerlink" href="#_22" title="Permanent link">¶</a></h3>
+<ul>
+<li>基本用法</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+    // 表达式1?表达式2:表达式3:
+    i = 2&gt;1 ? 1+2 : 3*4;  // 如果2大于1，则把1+2的执行结果赋值给i,否则把3*4的执行结果赋值给i;
+    printf(&quot;%d&quot;, i);
+    return 0;
+}
+</code></pre>
+
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int a=3, b=4, c=5;
+    int max = 0;
+    max = (a &lt; b ? b : a) &lt; c ? c : a;  // 获取ABC中的最大值
+    printf(&quot;%d&quot;,max);
+    return 0;
+}
+</code></pre>
+
+<h3 id="_23">逗号运算符<a class="headerlink" href="#_23" title="Permanent link">¶</a></h3>
+<ul>
+<li>表达式1,表达式2,...,表达式n；</li>
+<li>最后一个表达式的值是作为整个逗号表达式的值；</li>
+<li>逗号表达式的优先级最低（优先级可以加括号）；</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i, j;
+    i = 1,2,3+4,5*6,7/8,9%3;
+    j = (1,2,3+4,5*6,7/8,9%3);
+    printf(&quot;%d\n&quot;, i); // 1
+    printf(&quot;%d\n&quot;, j); // 0
+    return 0;
+}
+</code></pre>
+
+<h2 id="_24">一些优先级<a class="headerlink" href="#_24" title="Permanent link">¶</a></h2>
+<ol>
+<li><code>.</code>的优先级高于<code>*</code>；</li>
+<li><code>.</code>的优先级高于<code>++</code>；</li>
+<li><code>[]</code>的优先级高于<code>*</code>；</li>
+<li>函数<code>()</code>的优先级高于<code>*</code>；</li>
+<li><code>==</code>和<code>!=</code>高于位操作；</li>
+<li>==和!=高于赋值运算符；</li>
+<li>算术运算符高于位移运算符；</li>
+<li>逗号运算符最低；</li>
+</ol>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+        
+  <p class="logo">
+    <a href="..">
+      <img class="logo" src="../logo.png" title="C Language Getting Started Guide">
+    </a>
+  </p>
+  
+
+
+
+        
+          
+
+
+
+<h3>Table Of Contents</h3>
+
+<nav>
+  
+  
+    <ul>
+    
+      <li><a href="#_2">运算符优先级</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_3">运算符结合性</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_4">运算符分类</a></li>
+      <ul>
+    
+      <li><a href="#_5">算术运算符</a></li>
+      <ul>
+    
+      <li><a href="#_6">基本算术运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_7">求余运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_8">自增自减运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_9">运算符使用需要注意的地方</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_10">赋值运算符</a></li>
+      <ul>
+    
+      <li><a href="#_11">左值、右值和数据对象</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_12">简单赋值运算符与符合赋值运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_13">复制过程中的类型转换</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_14">使用赋值运算符需要注意的地方</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_15">关系运算符</a></li>
+      <ul>
+    
+      <li><a href="#_16">关系运算符的使用</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_17">逻辑运算符</a></li>
+      <ul>
+    
+      <li><a href="#_18">逻辑运算符的运算</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_19">逻辑运算中的短路求值</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_20">位逻辑运算符</a></li>
+      <ul>
+    
+      <li><a href="#_21">左移、右移运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_22">条件运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_23">逗号运算符</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_24">一些优先级</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+  
+
+  
+    <hr>
+    <ul>
+      
+        <li class="toctree-l1"><a href="https://github.com/anshengme/C-Language-Getting-Started-Guide">Fork me on GitHub</a></li>
+      
+    </ul>
+  
+</nav>
+          
+  <h3>Related Topics</h3>
+  <ul>
+    
+      <li>Previous: <a href="../chapter-6/" title="previous chapter">
+        第六章 数据类型
+      </a></li>
+    
+    
+      <li>Next: <a href="../chapter-8/" title="next chapter">
+        第八章 输入输出
+      </a></li>
+    
+  </ul>
+
+        
+        <div id="searchbox" style="display: none;" role="search">
+  <h3>Quick search</h3>
+  <form class="search" action="../search.html" method="get">
+    <input name="q" type="text">
+    <input value="Go" type="submit">
+  </form>
+  <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+  </p>
+</div>
+<script type="text/javascript">
+  document.getElementById("searchbox").style.display = "block";
+</script>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  
+    <div class="footer">
+      
+        &copy; 2017 ansheng
+      
+      
+        |
+        Powered by <a href="http://www.mkdocs.org">MkDocs 0.16.3</a>
+        &amp; <a href="https://github.com/iamale/mkdocs-alabaster">Alabaster</a>
+      
+    </div>
+  
+
+  <!--
+  MkDocs version      : 0.16.3
+  Docs Build Date UTC : 2017-09-22 08:42:19
+  -->
+</body>
+</html>
