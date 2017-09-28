@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>第十章 函数 &mdash; C Language Getting Started Guide</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/alabaster.css" type="text/css">
+    <link rel="stylesheet" href="../css/alabaster-overrides.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+    
+  
+</head>
+<body>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body" role="main">
+          
+            <h1 id="_1">函数<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<ul>
+<li>函数的基本概念</li>
+</ul>
+<p>把重复的功能分装到一个函数中，当每次遇到这个功能的时候可直接调用函数去完成，省去代码的重复编写。</p>
+<pre><code class="c">类型标识符 函数名(类型1 形参1, 类型2 形参2, 类型3 形参3.....)
+{
+    代码块;
+    return 返回值;
+}
+</code></pre>
+
+<p>如下实例：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int jiesheng(int n)
+{
+    int i;
+    int s = 1;
+    for(i=1;i&lt;=n;i++)
+        s *= i;
+    return s;
+}
+
+int main(void)
+{
+    int s = jiesheng(5);
+    printf(&quot;%d&quot;,s);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>函数是如何被执行的</li>
+</ul>
+<p><code>传递参数(也可以不穿)</code> --&gt; <code>函数体运算</code> --&gt; <code>返回值(也可以不返回)</code></p>
+<ul>
+<li>
+<p>在此分析main函数</p>
+<ol>
+<li>标准定义：C99</li>
+<li>入口函数<code>__main</code>、<code>__start</code></li>
+<li>Windows系统和嵌入式中的main</li>
+</ol>
+</li>
+<li>
+<p>空函数</p>
+</li>
+</ul>
+<pre><code class="c">void void_function(void)
+{
+
+}
+</code></pre>
+
+<ul>
+<li>函数的原型、声明与定义</li>
+</ul>
+<p><strong>原型：</strong> 原型就是一个函数声明</p>
+<p><strong>函数的声明：</strong>用来描述函数的参数类型和返回值，告诉编译器以作代码检查</p>
+<p><strong>函数的定义：</strong>实现函数的功能，函数只能定义一次，但可以多次声明</p>
+<pre><code class="c">// 先声明
+extern int jiesheng(int n);
+// 后调用
+</code></pre>
+
+<h2 id="_2">函数的参数<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>形式参数和实际参数</li>
+</ul>
+<pre><code class="c">int jiesheng(int n) // 其中的n就是形式参数，可以是个变量也可以是个常量
+</code></pre>
+
+<pre><code class="c">int s = jiesheng(5); // 在调用时，传过来的6就是实际参数
+</code></pre>
+
+<ul>
+<li>值调用</li>
+</ul>
+<p>C语言中传递的参数都是通过<code>值</code>进行调用，例如上述中把实际参数<code>5</code>进行拷贝，然后在传递给函数，拷贝后的值就是形式参数<code>n</code>；</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int print_int(int n)
+{
+    printf(&quot;%d\n&quot;,n);
+    n+=1;
+    printf(&quot;%d\n&quot;,n);
+    return n;
+}
+
+int main(void)
+{
+    int i = 10;
+    printf(&quot;%d\n&quot;,i);
+    int rest = print_int(i);
+    printf(&quot;%d\n&quot;,rest);
+    printf(&quot;%d\n&quot;,i);
+    return 0;
+}
+</code></pre>
+
+<p>执行结果</p>
+<pre><code class="bash">10
+10
+11
+11
+10
+</code></pre>
+
+<ul>
+<li>地址调用</li>
+</ul>
+<p>传递内存地址，而不是值；</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int print_int(int * n)
+{
+    printf(&quot;%d %x\n&quot;,*n,&amp;n);
+    *n+=1;
+    printf(&quot;%d %x\n&quot;,*n,&amp;n);
+    return *n;
+}
+
+int main(void)
+{
+    int i = 10;
+    printf(&quot;%d %x\n&quot;,i,&amp;i);
+    int rest = print_int(&amp;i);
+    printf(&quot;%d %x\n&quot;,rest,&amp;rest);
+    printf(&quot;%d %x\n&quot;,i,&amp;i);
+    return 0;
+}
+</code></pre>
+
+<p>执行结果</p>
+<pre><code class="bash">10 2fdd9910
+10 2fdd98f8
+11 2fdd98f8
+11 2fdd9914
+11 2fdd9910
+</code></pre>
+
+<p>不管是<code>地址</code>传参还是<code>值</code>传参，都是将值拷贝一份到函数中。</p>
+<h2 id="_3">函数的嵌套与递归函数<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="_4">函数嵌套<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<ul>
+<li>C语言中，除了<code>main</code>之外，函数之间的关系是平等的，因为<code>main</code>函数是C语言中的入口；</li>
+<li>在一个函数中不能定义另外一个函数；</li>
+<li>在一个函数中可以调用另外一个函数；</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int print1(int i)
+{
+    printf(&quot;%d\n&quot;,i);
+    print2(2);
+    return 0;
+}
+
+int print2(int i)
+{
+    printf(&quot;%d\n&quot;,i);
+    print3(3);
+    return 0;
+}
+
+int print3(int i)
+{
+    printf(&quot;%d\n&quot;,i);
+    return 0;
+}
+
+int main(void)
+{
+    print1(1);
+    return 0;
+}
+</code></pre>
+
+<h3 id="_5">递归函数<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<ul>
+<li>一个函数在它的函数体定义内又调用该函数本身<ol>
+<li>直接调用：直接递归</li>
+<li>间接调用：间接递归</li>
+</ol>
+</li>
+<li>嵌套调用的一种特殊情况</li>
+<li>优点与缺点<ol>
+<li>可以帮助解决一些算法问题</li>
+<li>运行效率较低、系统开销大</li>
+</ol>
+</li>
+<li>递归函数需要注意的一些地方<ol>
+<li>防止递归层数太多而引起栈溢出</li>
+<li>汉诺塔、二叉树的遍历</li>
+</ol>
+</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int story(int i)
+{
+    if(i &lt; 50)
+        printf(&quot;从前有座山,\n&quot;);
+        for(i=0;i&lt;60000000;i++);  //delay
+        printf(&quot;山里有做庙,\n&quot;);
+        for(i=0;i&lt;60000000;i++);
+        printf(&quot;庙里有个老和尚,\n&quot;);
+        for(i=0;i&lt;60000000;i++);
+        printf(&quot;老和尚在给小和尚讲故事,\n&quot;);
+        for(i=0;i&lt;60000000;i++);
+        printf(&quot;讲的啥？\n&quot;);
+        for(i=0;i&lt;90000000;i++);
+        printf(&quot;\n\n&quot;);
+
+        i++;
+        story(i);
+    return i;
+}
+
+int main(void)
+{
+    printf(&quot;开始讲故事啦\n\n&quot;);
+    story(0);
+    return 0;
+}
+</code></pre>
+
+<h2 id="_6">变量的作用域<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="_7">外部(全局)变量与局部变量<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<ul>
+<li>外部变量（全局变量）</li>
+</ul>
+<p>函数外部定义的变量</p>
+<ul>
+<li>局部变量<ol>
+<li>在函数或复合语句内部定义的变量</li>
+<li>函数的形参也属于局部变量</li>
+</ol>
+</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int global = 10;  // 全局变量
+
+int main(void)
+{
+    int i = 1;  // 局部变量
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>外部变量和局比变量的作用域</li>
+</ul>
+<p>变量的作用域与其定义的位置有着直接关系</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int global = 10;  // 全局变量,作用域从第三行开始
+
+int main(void)
+{
+    int i = 1;  // 局部变量，作用域从第七行到12行
+    {
+        int j = 10;  // 代码块变量，作用域从第8行到10行
+    }
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>一些需要注意的地方<ul>
+<li>变量作用于屏蔽</li>
+<li>C99标准中新的修改</li>
+</ul>
+</li>
+</ul>
+<h3 id="_8">变量的作用域<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<ul>
+<li>什么是作用于scope<ol>
+<li>变量在程序中的有效范围；</li>
+<li>即程序在什么范围内变量可以被识别和使用；</li>
+</ol>
+</li>
+<li>分类<ol>
+<li>代码块作用域</li>
+<li>文件作用域</li>
+<li>函数作用域</li>
+<li>原型作用域</li>
+</ol>
+</li>
+</ul>
+<h2 id="_9">变量的存储类型<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<ul>
+<li>变量的本质</li>
+</ul>
+<p>一段连续内存空间的别名</p>
+<ul>
+<li>声明变量的意义<ol>
+<li>建立变量符号表</li>
+<li>变量的数据类型指示系统分配不同大小内存</li>
+<li>变量的数据类型指示系统如何存储、运算</li>
+<li>变量的数据类型决定变量的取值范围</li>
+</ol>
+</li>
+<li>变量名、变量的值、变量的地址</li>
+<li>左值和右值</li>
+</ul>
+<h3 id="_10">程序存储分布<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<ol>
+<li>程序代码区</li>
+<li>静态存储区<ul>
+<li>字符串等文字常量</li>
+<li>全局变量和静态局部变量</li>
+</ul>
+</li>
+<li>动态存储区</li>
+</ol>
+<h3 id="_11">变量的存储方式<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<ul>
+<li>自动变量：auto</li>
+<li>静态变量：static</li>
+<li>寄存器变量：register</li>
+<li>外部变量：extern</li>
+</ul>
+<h2 id="volatile">关键字volatile<a class="headerlink" href="#volatile" title="Permanent link">¶</a></h2>
+<ul>
+<li>变量使用volatile修饰</li>
+</ul>
+<p>告诉编译器，该变量随时会发生变化，每次使用该变量直接到内存中去取而不是采用暂存在寄存器中的值。</p>
+<ul>
+<li>变量同时使用const和valatile修饰</li>
+</ul>
+<p>状态寄存器</p>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+        
+  <p class="logo">
+    <a href="..">
+      <img class="logo" src="../logo.png" title="C Language Getting Started Guide">
+    </a>
+  </p>
+  
+
+
+
+        
+          
+
+
+
+<h3>Table Of Contents</h3>
+
+<nav>
+  
+  
+    <ul>
+    
+      <li><a href="#_2">函数的参数</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_3">函数的嵌套与递归函数</a></li>
+      <ul>
+    
+      <li><a href="#_4">函数嵌套</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_5">递归函数</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_6">变量的作用域</a></li>
+      <ul>
+    
+      <li><a href="#_7">外部(全局)变量与局部变量</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_8">变量的作用域</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#_9">变量的存储类型</a></li>
+      <ul>
+    
+      <li><a href="#_10">程序存储分布</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_11">变量的存储方式</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+    
+      <li><a href="#volatile">关键字volatile</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+  
+
+  
+    <hr>
+    <ul>
+      
+        <li class="toctree-l1"><a href="https://github.com/anshengme/C-Language-Getting-Started-Guide">Fork me on GitHub</a></li>
+      
+    </ul>
+  
+</nav>
+          
+  <h3>Related Topics</h3>
+  <ul>
+    
+      <li>Previous: <a href="../chapter-9/" title="previous chapter">
+        第九章 流程控制
+      </a></li>
+    
+    
+      <li>Next: <a href="../references/" title="next chapter">
+        参考文献
+      </a></li>
+    
+  </ul>
+
+        
+        <div id="searchbox" style="display: none;" role="search">
+  <h3>Quick search</h3>
+  <form class="search" action="../search.html" method="get">
+    <input name="q" type="text">
+    <input value="Go" type="submit">
+  </form>
+  <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+  </p>
+</div>
+<script type="text/javascript">
+  document.getElementById("searchbox").style.display = "block";
+</script>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  
+    <div class="footer">
+      
+        &copy; 2017 ansheng
+      
+      
+        |
+        Powered by <a href="http://www.mkdocs.org">MkDocs 0.16.3</a>
+        &amp; <a href="https://github.com/iamale/mkdocs-alabaster">Alabaster</a>
+      
+    </div>
+  
+
+  <!--
+  MkDocs version      : 0.16.3
+  Docs Build Date UTC : 2017-09-28 03:47:49
+  -->
+</body>
+</html>

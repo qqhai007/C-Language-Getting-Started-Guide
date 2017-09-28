@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>/chapter-1/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>/chapter-2/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
      <loc>/chapter-3/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
      <loc>/chapter-4/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -44,7 +44,7 @@
     
     <url>
      <loc>/chapter-5/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -52,7 +52,7 @@
     
     <url>
      <loc>/chapter-6/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -60,7 +60,7 @@
     
     <url>
      <loc>/chapter-7/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -68,7 +68,7 @@
     
     <url>
      <loc>/chapter-8/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -76,7 +76,15 @@
     
     <url>
      <loc>/chapter-9/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/chapter-10/</loc>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -84,7 +92,7 @@
     
     <url>
      <loc>/references/</loc>
-     <lastmod>2017-09-22</lastmod>
+     <lastmod>2017-09-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
