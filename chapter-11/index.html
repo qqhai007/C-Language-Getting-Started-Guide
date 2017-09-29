@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>第十一章 数组 &mdash; C Language Getting Started Guide</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/alabaster.css" type="text/css">
+    <link rel="stylesheet" href="../css/alabaster-overrides.css" type="text/css">
+
+    
+
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+    
+  
+</head>
+<body>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body" role="main">
+          
+            <h1 id="_1">数组<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<ul>
+<li>使用数组简化程序</li>
+</ul>
+<p>对于相同类型的多个数据，可以使用数据代替，相同类型的多个参数，也可以使用数组代替。</p>
+<p>例如下面计算15个学生的平均成绩</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int score[15];
+    int i;
+    printf(&quot;请输入15个学生的英语成绩：\n&quot;);
+    for(i=0;i&lt;15;i++)
+        scanf(&quot;%d&quot;, &amp;score[i]);
+    float sum = 0;
+    float average_score = 0;
+    for(i=0;i&lt;15;i++)
+        sum += score[i];
+    average_score = sum/15;
+    printf(&quot;他们的英语平均成绩为：%f\n&quot;, average_score);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>什么是数组？<ol>
+<li>一组相同类型的数据集中在一起保存的一种方式，数组用来存储一组相同类型的数据对象；</li>
+<li>数组元素：数组中的单个数据对象；</li>
+<li>数组分类：字符数组、整型数组、指针数组、二维数组...；</li>
+<li>数组的引用：使用下表<code>[]</code>或者指针，索引从0开始；</li>
+</ol>
+</li>
+</ul>
+<h2 id="_2">一维数组<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>数组的定义</li>
+</ul>
+<pre><code class="c">数组类型 数组名[数组长度];
+int array[10];
+</code></pre>
+
+<ul>
+<li>定义时初始化数组</li>
+</ul>
+<pre><code class="c">int array[5] = {1, 2, 3, 4, 5};
+for(int i = 0;i&lt;5;i++)
+    printf(&quot;%d&quot;,array[i]); // 引用数组时使用下表进行引用，从0开始
+return 0;
+</code></pre>
+
+<p>在初始化的时候，如果定义了<code>10</code>个长度的数组，但是只在里面添加了<code>5</code>个值，那么剩下<code>5</code>个将会被默认赋值为<code>0</code></p>
+<pre><code class="c">int array[10] = {1, 2, 3, 4, 5};
+for(int i = 0;i&lt;10;i++)
+    printf(&quot;%d\n&quot;,array[i]);
+return 0;
+</code></pre>
+
+<p>定义数组时也可以给指定索引赋值，如下代码中，定义了一个长度为<code>10</code>的数组，其中第一个元素赋值为<code>100</code>，最后一个元素赋值为<code>9999</code></p>
+<pre><code class="c">int array[10] = {[0]=100, [9]=9999};
+</code></pre>
+
+<p>定义数组不指定长度，默认根据数组元素的个数来定义数组长度</p>
+<pre><code class="c">int array[] = {1,2,3,4,5};
+</code></pre>
+
+<ul>
+<li>动态往数组添加数据</li>
+</ul>
+<pre><code class="c">int array[5];
+
+for(int i = 0; i&lt;5; i++)
+    array[i] = i*i;  // 数组内添加内容
+
+for(int i = 0;i&lt;5;i++)
+    printf(&quot;%d\n&quot;,array[i]);
+return 0;
+</code></pre>
+
+<ul>
+<li>数组大小</li>
+</ul>
+<p>定义的数组类型不同，在初始化的时候所分配的内存大小也是不同的。</p>
+<h2 id="_3">数组名与数组地址<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<ul>
+<li>什么是数组名<ol>
+<li>使用数组可以为同一组相同类型的变量命名同一个名称。C语言把数组名解释为指向该数组首元素的地址，数组名和指向首元素的指针等价；</li>
+<li>当引用数组时，编译器会把数组名的值看做一个指针常量；</li>
+<li>数组名不能用指针常量表示的情况<ul>
+<li>当数组名用作<code>sizeof</code>或<code>&amp;</code>的操作时，<code>sizeof</code>返回的是整个数组的长度</li>
+<li>取一个数值名的地址<code>&amp;</code>产生的是一个指向数组的指针，而不是指向某个指针常量值的指针</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int a[10];
+    printf(&quot;%d %d\n&quot;,a, &amp;a[0]);  // 两者相同
+    printf(&quot;%d %d\n&quot;,a + 1, &amp;a[1]);  // 两者相同，+1是元素的地址，默认是0
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>
+<p>数组名作为左值和右值时的区别</p>
+<ul>
+<li>数组名不能作为左值：它代表的是一个指针常量，不能被修改；</li>
+<li>作为右值时：代表数组<code>首元素的地址</code>，而不是<code>数组的首地址</code>，注意，这里并没有一个地方来存储这个地址，这个是于指针不一样的地方；</li>
+</ul>
+</li>
+<li>
+<p>数组名和地址的区别</p>
+<ul>
+<li>数组名代表的是首元素<code>array[0]</code>的地址<code>&amp;array[0]</code>，而不是数组的首地址<code>&amp;a</code></li>
+<li>数组名<code>array+1</code>表示下一个数组元素的首地址<code>&amp;array[0]+1</code>,<code>&amp;array+1</code>指向下一个数组的首地址；</li>
+</ul>
+</li>
+</ul>
+<p><strong>使用数组需要注意的地方</strong></p>
+<ol>
+<li>数组的索引从0开始；</li>
+<li>数组越界问题，数组元素大于所定义长度时依旧不会报错；</li>
+<li>不指定数组大小时，编译器会根据初始化列表中元素的个数来决定；</li>
+<li>数组输入元素时，可以有更方便的写法；</li>
+<li>C语言只支持一位数组；</li>
+</ol>
+<h2 id="_4">二维数组<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>在C语言中依旧只支持一维数组，当一维数组中的每个元素都是一维数组时，就变成了二维数组；</p>
+<ul>
+<li>初始化</li>
+</ul>
+<p>定义一个三行三列的数组</p>
+<pre><code class="c">int array[3][3] = {
+    {1, 2, 3},
+    {1, 2, 3},
+    {1, 2, 3}
+};
+</code></pre>
+
+<p>上面的定义中，首先定义了一个长度为3的一维数组，一维数组中的每个元素又是一个长度为3的一维数组。</p>
+<ul>
+<li>引用</li>
+</ul>
+<pre><code class="c">for(int i = 0; i&lt;3; i++) {  // 循环每一行
+    for(int j = 0; j&lt;3; j++) {  // 循环每一列
+        printf(&quot;%d &quot;,array[i][j]);
+    }
+    printf(&quot;\n&quot;);
+}
+</code></pre>
+
+<ul>
+<li>存储</li>
+</ul>
+<p>二维数组的存储和一维数组的存储是一样的。</p>
+<ul>
+<li>三维数组、多维数组</li>
+</ul>
+<p>三维数组实例</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int array[3][3][3] = {  // 定义一个三行三列的数组
+        {
+            {1, 2, 3},
+            {1, 2, 3},
+            {1, 2, 3}
+        },
+        {
+            {1, 2, 3},
+            {1, 2, 3},
+            {1, 2, 3}
+        },
+        {
+            {1, 2, 3},
+            {1, 2, 3},
+            {1, 2, 3}
+        }
+    };
+
+    for(int i = 0; i&lt;3; i++) {
+        for(int j = 0; j&lt;3; j++) {
+            for(int k = 0; k&lt;3; k++) {
+                printf(&quot;%d &quot;,array[i][j][k]);
+            }
+            printf(&quot;\n&quot;);
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+
+<h2 id="_5">字符串数组与字符串<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>字符数组就是数组中所有的元素都是字符类型的数据。</p>
+<ul>
+<li>初始化</li>
+</ul>
+<p>一维数组</p>
+<pre><code class="c">char str[20] = {'h','e','l','l','o','w','o','r','l','d'};
+printf(&quot;%s\n&quot;,str);
+</code></pre>
+
+<p>二维数组</p>
+<pre><code class="c">char str2d[2][5] = {
+    {'h','e','l','l','o'},
+    {'w','o','r','l','d'}
+};
+for(int i = 0; i&lt;2; i++) {
+    for(int j = 0; j&lt;5; j++) {
+        printf(&quot;%c&quot;,str2d[i][j]);
+    }
+}
+</code></pre>
+
+<p>定义字符串数组时可以使用ASCII来进行赋值</p>
+<pre><code class="c">char str[10] = {104,101,108,108,111};
+printf(&quot;%s\n&quot;,str);
+</code></pre>
+
+<ul>
+<li>存储</li>
+</ul>
+<p>连续线性存储，和数组存储模式一样。</p>
+<ul>
+<li>字符串</li>
+</ul>
+<pre><code class="c">char str[] = &quot;Hello, World!&quot;;
+printf(&quot;%s\n&quot;,str);
+</code></pre>
+
+<ul>
+<li>字符串的存储</li>
+</ul>
+<p>字符串存储的时候会有一个转义结束标志</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    char str[] = &quot;helloworld&quot;;
+    char str1[] = {&quot;helloworld&quot;};
+    char c[] = {'h','e','l','l','o','w','o','r','l','d'};
+    printf(&quot;%d %d\n&quot;,sizeof(str),sizeof(c));  // 11 10
+    printf(&quot;%d %d\n&quot;,sizeof(str),sizeof(str1));  // 11 11
+    return 0;
+}
+</code></pre>
+
+<h2 id="_6">字符串处理函数<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<ul>
+<li>字符串输入gets、输出函数puts</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    char str[100];
+    puts(&quot;请输入字符串：&quot;);
+    gets(str);
+    puts(str);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>字符串长度函数：strlen</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char str[100] = &quot;Hello, World!&quot;;
+    printf(&quot;%d %d\n&quot;, sizeof(str), strlen(str));
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>字符串连接函数：strcat</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char des[] = &quot;hello&quot;;
+    char sur[5] = {'a','s','!'};
+    printf(&quot;%s\n&quot;, strncat(des, sur, 2));
+    printf(&quot;%s\n&quot;, strcat(des, sur));
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>字符串复制函数：strncpy/strcpy</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char des[] = &quot;Hello&quot;;
+    char sur[5] = {'a', 's', '!', '!', '!'};
+    // 把des拷贝到sur中
+    printf(&quot;%s\n&quot;, strncpy(des,sur,2));  // 拷贝指定的字节
+    printf(&quot;%s\n&quot;, strcpy(des, sur));  // 全部拷贝
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>字符串比较函数：strcmp</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char str1[] = &quot;hello&quot;;
+    char str2[50];
+    int i = strcmp(str1, str2);
+    printf(&quot;%d\n&quot;, i);
+
+    int j = strncmp(str1, str2, 5);
+    printf(&quot;%d\n&quot;, j);
+
+    return 0;
+}
+</code></pre>
+
+<h2 id="_7">数组作为函数的参数<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li>数组元素作为函数的参数</li>
+</ul>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int calc_add(int a, int b){
+    return a+b;
+}
+
+int main(void)
+{
+    int score[10] = {[0]=99, [1]=98};
+    int sum;
+    sum = calc_add(score[0],score[1]);
+    printf(&quot;%d&quot;,sum);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>数组名作为函数的参数</li>
+</ul>
+<p>传递的是一个地址，或者说是常量指针，下面实例计算数组内所有值的和</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int array_add(int a[10]){
+    int sum = 0;
+    for(int i = 0; i&lt;10;i++)
+        sum += a[i];
+    return sum;
+}
+
+int main(void)
+{
+    int score[10] = {[0]=99, [1]=98};
+    int sum;
+    sum = array_add(score);
+    printf(&quot;%d&quot;,sum);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>注意点</li>
+</ul>
+<pre><code class="c">int array(const int a[5]) {
+    ......
+    // 此时传递过来的数组a是不能够被修改的
+    return 0;
+}
+</code></pre>
+
+<ol>
+<li>数组名作为函数的参数时，其实传递的是一个地址指针，形参和实参的类型必须一直；</li>
+<li>形参和实参数组的铲毒可以不相同，关于数组的长度可以通过另外一个参数传递进来；</li>
+<li>多维数组作为函数的参数时，在函数定义时对形参数组可以制定每一维的长度，但是可以省去第一维的长度。</li>
+</ol>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebarwrapper">
+        
+  <p class="logo">
+    <a href="..">
+      <img class="logo" src="../logo.png" title="C Language Getting Started Guide">
+    </a>
+  </p>
+  
+
+
+
+        
+          
+
+
+
+<h3>Table Of Contents</h3>
+
+<nav>
+  
+  
+    <ul>
+    
+      <li><a href="#_2">一维数组</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_3">数组名与数组地址</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_4">二维数组</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_5">字符串数组与字符串</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_6">字符串处理函数</a></li>
+      <ul>
+    
+  </ul>
+    
+      <li><a href="#_7">数组作为函数的参数</a></li>
+      <ul>
+    
+  </ul>
+    
+  </ul>
+  
+
+  
+    <hr>
+    <ul>
+      
+        <li class="toctree-l1"><a href="https://github.com/anshengme/C-Language-Getting-Started-Guide">Fork me on GitHub</a></li>
+      
+    </ul>
+  
+</nav>
+          
+  <h3>Related Topics</h3>
+  <ul>
+    
+      <li>Previous: <a href="../chapter-10/" title="previous chapter">
+        第十章 函数
+      </a></li>
+    
+    
+      <li>Next: <a href="../references/" title="next chapter">
+        参考文献
+      </a></li>
+    
+  </ul>
+
+        
+        <div id="searchbox" style="display: none;" role="search">
+  <h3>Quick search</h3>
+  <form class="search" action="../search.html" method="get">
+    <input name="q" type="text">
+    <input value="Go" type="submit">
+  </form>
+  <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+  </p>
+</div>
+<script type="text/javascript">
+  document.getElementById("searchbox").style.display = "block";
+</script>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+
+  
+    <div class="footer">
+      
+        &copy; 2017 ansheng
+      
+      
+        |
+        Powered by <a href="http://www.mkdocs.org">MkDocs 0.16.3</a>
+        &amp; <a href="https://github.com/iamale/mkdocs-alabaster">Alabaster</a>
+      
+    </div>
+  
+
+  <!--
+  MkDocs version      : 0.16.3
+  Docs Build Date UTC : 2017-09-29 04:17:58
+  -->
+</body>
+</html>
