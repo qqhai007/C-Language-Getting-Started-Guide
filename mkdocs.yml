@@ -13,7 +13,7 @@ pages:
   - 第八章 输入输出: chapter-8.md
   - 第九章 流程控制: chapter-9.md
   - 第十章 函数: chapter-10.md
-  # - 第十章 数组: index.md
+  - 第十一章 数组: chapter-11.md
   # - 第十一章 指针: index.md
   # - 第十二章 结构体: index.md
   # - 第十三章 预处理: index.md
